@@ -1,0 +1,9 @@
+query FetchEmployeeList{
+  employeeList{
+    employeeId,
+    name,
+    gender,
+    department,
+    city
+  }
+}

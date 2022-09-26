@@ -1,0 +1,3 @@
+mutation DeleteMovieData($employeeId:Int!){
+    deleteEmployee(employeeId:$employeeId)
+}

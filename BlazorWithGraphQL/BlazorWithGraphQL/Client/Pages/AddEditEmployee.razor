@@ -1,0 +1,55 @@
+﻿@page "/employee/add"
+@page "/employee/edit/{EmpID:int}"
+@inherits AddEditEmployeeBase
+
+<h1>@Title Employee</h1>
+<hr />
+
+<EditForm Model="@employee" OnValidSubmit="SaveEmployee">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="employee.Name" />
+        </div>
+        <ValidationMessage For="@(() => employee.Name)" />
+    </div>
+    <div class="mb-3">
+        <label for="Gender" class="form-label">Gender</label>
+        <div class="col-md-4">
+            <InputSelect class="form-control" @bind-Value="employee.Gender">
+                <option value="">-- Select Gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </InputSelect>
+        </div>
+        <ValidationMessage For="@(() => employee.Gender)" />
+    </div>
+    <div class="mb-3">
+        <label for="Department" class="form-label">Department</label>
+        <div class="col-md-4">
+            <InputText class="form-control" @bind-Value="employee.Department" />
+        </div>
+        <ValidationMessage For="@(() => employee.Department)" />
+    </div>
+    <div class="mb-3">
+        <label for="City" class="form-label">City</label>
+        <div class="col-md-4">
+            <InputSelect class="form-control" @bind-Value="employee.City">
+                <option value="-- Select City --">-- Select City --</option>
+                @if (lstCity is not null)
+                {
+                    @foreach (var city in lstCity)
+                    {
+                        <option value="@city.CityName">@city.CityName</option>
+                    }
+                }
+            </InputSelect>
+        </div>
+        <ValidationMessage For="@(() => employee.City)" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-light" @onclick="NavigateToHome">Cancel</button>
+    </div>
+</EditForm>

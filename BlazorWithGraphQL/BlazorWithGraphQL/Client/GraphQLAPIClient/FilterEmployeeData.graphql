@@ -1,0 +1,9 @@
+query FilterEmployeeByID($filterInput:EmployeeFilterInput){
+  employeeList(where:$filterInput){
+    employeeId,
+    name,
+    gender,
+    department,
+    city
+  }
+}

@@ -1,0 +1,6 @@
+query FetchCityList{
+  cityList{
+    cityId,
+    cityName
+  }
+}

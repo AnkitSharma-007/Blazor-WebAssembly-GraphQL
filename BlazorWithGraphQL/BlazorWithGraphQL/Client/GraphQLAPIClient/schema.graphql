@@ -1,0 +1,85 @@
+﻿schema {
+  query: EmployeeQueryResolver
+  mutation: EmployeeMutationResolver
+}
+
+type EmployeeQueryResolver {
+  "Gets the list of movies."
+  employeeList(where: EmployeeFilterInput): [Employee!]!
+  "Gets the list of cities."
+  cityList: [City!]!
+}
+
+type EmployeeMutationResolver {
+  "Add a new employee data."
+  addEmployee(employee: EmployeeInput!): AddEmployeePayload!
+  "Edit an existing employee data."
+  editEmployee(employee: EmployeeInput!): AddEmployeePayload!
+  "Delete an employee data."
+  deleteEmployee(employeeId: Int!): Int!
+}
+
+input EmployeeFilterInput {
+  and: [EmployeeFilterInput!]
+  or: [EmployeeFilterInput!]
+  employeeId: ComparableInt32OperationFilterInput
+  name: StringOperationFilterInput
+  city: StringOperationFilterInput
+  department: StringOperationFilterInput
+  gender: StringOperationFilterInput
+}
+
+input ComparableInt32OperationFilterInput {
+  eq: Int
+  neq: Int
+  in: [Int!]
+  nin: [Int!]
+  gt: Int
+  ngt: Int
+  gte: Int
+  ngte: Int
+  lt: Int
+  nlt: Int
+  lte: Int
+  nlte: Int
+}
+
+input StringOperationFilterInput {
+  and: [StringOperationFilterInput!]
+  or: [StringOperationFilterInput!]
+  eq: String
+  neq: String
+  contains: String
+  ncontains: String
+  in: [String]
+  nin: [String]
+  startsWith: String
+  nstartsWith: String
+  endsWith: String
+  nendsWith: String
+}
+
+type City {
+  cityId: Int!
+  cityName: String!
+}
+
+type Employee {
+  employeeId: Int!
+  name: String!
+  city: String!
+  department: String!
+  gender: String!
+}
+
+type AddEmployeePayload {
+  employee: Employee!
+}
+
+input EmployeeInput {
+  employeeId: Int!
+  name: String!
+  city: String!
+  department: String!
+  gender: String!
+}

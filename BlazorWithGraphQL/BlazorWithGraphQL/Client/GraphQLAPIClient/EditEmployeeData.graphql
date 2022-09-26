@@ -1,0 +1,7 @@
+mutation EditEmployeeData($employeeData:EmployeeInput!){
+  editEmployee(employee:$employeeData){
+  employee{
+      name
+    }
+  }
+}
