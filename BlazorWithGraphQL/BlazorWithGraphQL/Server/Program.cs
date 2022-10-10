@@ -15,9 +15,11 @@ builder.Services.AddDbContextFactory<EmployeeDBContext>
     (options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IEmployee, EmployeeDataAccessLayer>();
+builder.Services.AddTransient<IEmployee, EmployeeDataAccessLayer>();
 
 builder.Services.AddGraphQLServer()
+    .RegisterService<IEmployee>()
+    .RegisterDbContext<EmployeeDBContext>()
     .AddQueryType<EmployeeQueryResolver>()
     .AddMutationType<EmployeeMutationResolver>()
     .AddFiltering();

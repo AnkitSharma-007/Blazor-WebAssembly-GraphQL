@@ -7,15 +7,8 @@ namespace BlazorWithGraphQL.Server.GraphQL
     {
         public record AddEmployeePayload(Employee employee);
 
-        readonly IEmployee _employeeService;
-
-        public EmployeeMutationResolver(IEmployee employeeService)
-        {
-            _employeeService = employeeService;
-        }
-
         [GraphQLDescription("Add a new employee data.")]
-        public AddEmployeePayload AddEmployee(Employee employee)
+        public AddEmployeePayload AddEmployee(Employee employee, IEmployee _employeeService)
         {
             _employeeService.AddEmployee(employee);
 
@@ -23,7 +16,7 @@ namespace BlazorWithGraphQL.Server.GraphQL
         }
 
         [GraphQLDescription("Edit an existing employee data.")]
-        public async Task<AddEmployeePayload> EditEmployee(Employee employee)
+        public async Task<AddEmployeePayload> EditEmployee(Employee employee, IEmployee _employeeService)
         {
             await _employeeService.UpdateEmployee(employee);
 
@@ -31,7 +24,7 @@ namespace BlazorWithGraphQL.Server.GraphQL
         }
 
         [GraphQLDescription("Delete an employee data.")]
-        public async Task<int> DeleteEmployee(int employeeId)
+        public async Task<int> DeleteEmployee(int employeeId, IEmployee _employeeService)
         {
             await _employeeService.DeleteEmployee(employeeId);
 
