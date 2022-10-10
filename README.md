@@ -1,6 +1,10 @@
 # Blazor-WebAssembly-GraphQL
 
-A full stack application using Blazor Wasm and GraphQL. 
+A full stack application using Blazor Wasm, SQL Server and GraphQL. 
+
+# Demo
+
+![](https://github.com/AnkitSharma-007/Blazor-WebAssembly-GraphQL/blob/main/Output/BlazorWasmGraphQLOutput.gif)
 
 ## Prerequisites
 - Visual Studio 2022
